@@ -97,6 +97,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [mostafameerzad@gmail.com](mostafameerzad@gmail.com)
+Mostaf Meerzad - [mostafameerzad@gmail.com](mostafameerzad@gmail.com)
 
 Repository Link: [GitHub](https://github.com/mostafa-meerzad/Task-Manager-fullstack)

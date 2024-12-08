@@ -2,16 +2,20 @@
   "name": "backend",
   "version": "0.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon run server.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "description": "Backend for the Task-Manager-Fullstack app",
   "dependencies": {
+    "@types/express": "^5.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.8.4"
+    "mongoose": "^8.8.4",
+    "nodemon": "^3.1.7"
   }
 }

@@ -5,7 +5,7 @@ import {
   userRegistration,
 } from "../middlewares/userRegistration.js";
 import { validationResult } from "express-validator";
-import jwt from "jsonwebtoken";
+import { generateToken } from "../utils/generateToken.js";
 
 const router = express.Router();
 
@@ -27,9 +27,10 @@ router.post("/register", userRegistration, async (req, res) => {
     user = new User({ email, password, name });
     await user.save();
 
-    res
-      .status(201)
-      .json({ user: { name: user.name, email: user.email, id: user._id } });
+    const token = generateToken(user._id);
+    res.status(201).json({
+      user: { name: user.name, email: user.email, id: user._id, token },
+    });
   } catch (err) {
     res.status(500).json({ errors: [{ mag: "Internal server error" }] });
   }
@@ -56,9 +57,7 @@ router.post("/login", userLogin, async (req, res) => {
         .json({ errors: [{ msg: "Invalid email or password" }] });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = generateToken(user_id);
     res.status(200).json(token);
   } catch (err) {
     res.status(500).json({ errors: [{ msg: "Internal server error" }] });

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import router from "../routes/taskRoutes.js";
 
-const validateToken = (req, res, next) => {
+export const validateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -16,5 +16,3 @@ const validateToken = (req, res, next) => {
     res.status(401).json({ errors: [{ msg: "Invalid token" }] });
   }
 };
-
-export {validateToken};

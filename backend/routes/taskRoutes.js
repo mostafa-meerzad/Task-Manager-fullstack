@@ -1,6 +1,11 @@
 import express from "express";
 import Task from "../models/Task.js";
-import {validateToken} from "../middlewares/validation.js";
+import { validateToken } from "../middlewares/validateToken.js";
+import {
+  validateTask,
+  validateTaskUpdate,
+} from "../middlewares/validateTask.js";
+import { validationResult } from "express-validator";
 
 const router = express.Router();
 
@@ -13,8 +18,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", validateToken, async (req, res) => {
+router.post("/", validateToken, validateTask, async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const task = new Task(req.body);
     await task.save();
     res.status(201).json(task);
@@ -23,7 +33,7 @@ router.post("/", validateToken, async (req, res) => {
   }
 });
 
-router.put("/:id", validateToken, async (req, res) => {
+router.put("/:id", validateToken, validateTaskUpdate, async (req, res) => {
   const id = req.params.id;
   const updates = req.body;
   try {
@@ -40,7 +50,7 @@ router.put("/:id", validateToken, async (req, res) => {
   }
 });
 
-router.delete("/:id",validateToken , async (req, res) => {
+router.delete("/:id", validateToken, async (req, res) => {
   const id = req.params.id;
   try {
     const deletedTask = await Task.findByIdAndDelete(id);

@@ -23,7 +23,9 @@ router.post("/register", validation, async (req, res) => {
     user = new User({ email, password, name });
     await user.save();
 
-    res.status(201).json({ user });
+    res
+      .status(201)
+      .json({ user: { name: user.name, email: user.email, id: user._id } });
   } catch (err) {
     res.status(500).json({ errors: [{ mag: "Internal server error" }] });
   }

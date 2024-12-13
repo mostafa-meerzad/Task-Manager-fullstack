@@ -1,5 +1,6 @@
 import express from "express";
 import Task from "../models/Task.js";
+import {validateToken} from "../middlewares/validation.js";
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateToken, async (req, res) => {
   try {
     const task = new Task(req.body);
     await task.save();
@@ -22,7 +23,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateToken, async (req, res) => {
   const id = req.params.id;
   const updates = req.body;
   try {
@@ -39,7 +40,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id",validateToken , async (req, res) => {
   const id = req.params.id;
   try {
     const deletedTask = await Task.findByIdAndDelete(id);

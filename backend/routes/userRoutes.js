@@ -1,11 +1,9 @@
 import express from "express";
 import User from "../models/User.js";
-import {
-  userLogin,
-  userRegistration,
-} from "../middlewares/userRegistration.js";
+import { userRegistration } from "../middlewares/userRegistration.js";
 import { validationResult } from "express-validator";
 import { generateToken } from "../utils/generateToken.js";
+import { userLogin } from "../middlewares/userLogin.js";
 
 const router = express.Router();
 

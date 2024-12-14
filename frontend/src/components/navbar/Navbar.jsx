@@ -1,20 +1,32 @@
-import { Flex} from "@radix-ui/themes";
-import {Link} from "react-router-dom";
-import {Link as UILink} from "@radix-ui/themes"
-const Navbar = () => {
-    return (
-<nav className="">
+import { Link as UILink } from "@radix-ui/themes";
+import { Link } from "react-router-dom";
+import * as Toolbar from "@radix-ui/react-toolbar";
 
-    <Flex gap={"5"} p={"3"}  className={"m-5 border border-gray-200 rounded-md"}>
-        <h1 className={"font-medium"}>Task Manager</h1>
-        <Flex gap={"3"} >
-            <Link to={"/"}><UILink>Home</UILink></Link>
-            <Link to={"/tasks"}><UILink>Tasks</UILink></Link>
-            <Link to={"/login"}><UILink>Login</UILink></Link>
-            <Link to={"/register"}><UILink>Register</UILink></Link>
-        </Flex>
-    </Flex>
-</nav>
-    )
-}
-export default Navbar
+const Navbar = () => {
+  return (
+    <Toolbar.Root className="flex m-3 p-4 gap-4 bg-gray-100 rounded-md">
+      <h1 className={"pr-5 cursor-default"}>Task Manager</h1>
+      <Toolbar.Link asChild>
+        <Link to={"/"}>
+          <UILink>Home</UILink>
+        </Link>
+      </Toolbar.Link>
+      <Toolbar.Link>
+        <Link to={"/tasks"}>
+          <UILink>Tasks</UILink>
+        </Link>
+      </Toolbar.Link>
+      <Toolbar.Link>
+        <Link to={"/login"}>
+          <UILink>Login</UILink>
+        </Link>
+      </Toolbar.Link>
+      <Toolbar.Link>
+        <Link to={"/register"}>
+          <UILink>Register</UILink>
+        </Link>
+      </Toolbar.Link>
+    </Toolbar.Root>
+  );
+};
+export default Navbar;

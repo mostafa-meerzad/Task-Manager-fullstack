@@ -1,6 +1,4 @@
 const TaskForm = () => {
-    return (
-        <div>TaskForm</div>
-    )
-}
-export default TaskForm
+  return <div>TaskForm</div>;
+};
+export default TaskForm;

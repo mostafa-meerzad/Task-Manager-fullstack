@@ -7,8 +7,29 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch("/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        console.error("Invalid credentials");
+        alert("request failed");
+      }
+      // console.log(response.json())
+      const {user} = await response.json()
+      const token = user.token;
+      localStorage.setItem("token", token);
+      console.log("Logged in successfully!, token saved: ", token);
+
+      // const token = response.json()
+    } catch (err) {
+      console.log("register failed: ", err);
+      alert(err.message);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

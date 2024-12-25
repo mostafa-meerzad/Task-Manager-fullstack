@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LogOut from "../auth/LogOut.jsx";
 
 const Navbar = () => {
   return (
@@ -9,6 +10,7 @@ const Navbar = () => {
         <Link to={"/tasks"}>Tasks</Link>
         <Link to={"/login"}>Login</Link>
         <Link to={"/register"}>Register</Link>
+        <LogOut />
       </ul>
     </nav>
   );

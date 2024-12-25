@@ -11,7 +11,8 @@ const router = express.Router();
 
 router.get("/", validateToken, async (req, res) => {
   try {
-    const tasks = await Task.find();
+    const userId = req.user.userId;
+    const tasks = await Task.find({user: userId});
     res.status(200).json(tasks);
   } catch {
     res.status(404).json({});
@@ -25,7 +26,10 @@ router.post("/", validateToken, validateTask, async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const task = new Task(req.body);
+    const { title, description, completed } = req.body;
+    const userId = req.user.userId;
+    const task = new Task({ title, description, completed, user: userId });
+
     await task.save();
     res.status(201).json(task);
   } catch (err) {

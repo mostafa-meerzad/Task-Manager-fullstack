@@ -60,6 +60,12 @@ const TaskList = () => {
 
   return (
     <div>
+      <header className="flex justify-between items-center">
+        <h1>Your Tasks</h1>
+        <button className="btn-primary" onClick={openModal}>
+          + New Task
+        </button>
+      </header>
       <ul className={"flex flex-col gap-8 "}>
         {tasks.map((task) => (
           <li

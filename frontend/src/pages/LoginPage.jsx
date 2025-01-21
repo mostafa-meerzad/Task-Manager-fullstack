@@ -2,9 +2,7 @@ import Login from "../components/auth/Login.jsx";
 
 const LoginPage = () => {
   return (
-    <div>
-      <h2>LoginPage</h2>
-      <br/>
+    <div className={"flex justify-center items-center h-full"}>
       <Login />
     </div>
   );

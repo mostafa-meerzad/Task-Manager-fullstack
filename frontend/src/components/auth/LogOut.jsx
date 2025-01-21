@@ -5,7 +5,7 @@ const LogOut = () => {
   };
   return (
     <button className={"text-red-500"} onClick={handleLogOut}>
-      LogOut
+      Log Out
     </button>
   );
 };

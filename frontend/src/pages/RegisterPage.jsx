@@ -2,10 +2,7 @@ import Register from "../components/auth/Register.jsx";
 
 const RegisterPage = () => {
   return (
-    <div>
-      RegisterPage
-      <br />
-      <br />
+    <div className={"flex justify-center items-center h-full"}>
       <Register />
     </div>
   );

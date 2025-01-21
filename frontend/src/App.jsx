@@ -19,7 +19,7 @@ const App = () => {
             exact
             element={
               <ProtectedRoute>
-                <TaskPage />
+                  <TaskPage/>
               </ProtectedRoute>
             }
           />
@@ -29,3 +29,4 @@ const App = () => {
   );
 };
 export default App;
+

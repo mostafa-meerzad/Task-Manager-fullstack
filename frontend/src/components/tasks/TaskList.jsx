@@ -62,7 +62,8 @@ const TaskList = () => {
     <div>
       <header className="flex justify-between items-center">
         <h1>Your Tasks</h1>
-        <button className="btn-primary" onClick={()=>openModal}>
+
+        <button className="btn-primary" onClick={()=>openModal()}>
           + New Task
         </button>
       </header>

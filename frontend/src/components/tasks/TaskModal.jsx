@@ -46,7 +46,7 @@ const TaskModal = ({task, closeModal, setTasks}) => {
         }
     };
     return (
-        <div className={"modal absolute right-0 left-0 m-auto w-min "}>
+        <div className={"modal absolute right-0 left-0 m-auto mt-40 w-min z-10"}>
             <form onSubmit={handleSubmit(onSubmit)}
                   className={"flex flex-col gap-4 justify-center items-start p-4 bg-[#2C2C38] text-white w-80  rounded-md"}>
                 <h3 className={"text-xl font-bold"}> {task ? "Edit Task" : "Create Task"}</h3>
